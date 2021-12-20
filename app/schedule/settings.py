@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'time_management',
+    'time_management.apps.TimeManagementConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +117,8 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# IMP   Disabled just for purpose of testing
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -126,9 +127,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M",
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'
     ]
+}
+
+TIME_MANAGEMENT_APP = {
+    # IMP   Strict time slots limit "target td" time to only 0-8, 8-16, 16-24
+    #       And in this case 00:00, 08:00 and 16:00 accordingly
+    'STRICT_TIME_SLOTS': True,
+
+    # IMP   If set to True, will limit to maximum shifts per week to the value
+    #       specified for each Worker (max_shifts_per_week property of class Worker)
+    'LIMIT_WEEKLY_SHIFTS': True,
 }

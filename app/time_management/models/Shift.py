@@ -10,6 +10,9 @@ class Shift(models.Model):
 
 		cached_worker_name - is needed in case of deletion of worker's record, to preserve the information
 		about history of shifts.
+		target_dt - The date-time value of the day and starting time
+		updated_dt - The last saving/updating/creating date-time of the object
+		memo - Just an optional memo, if needed
 	"""
 
 	worker = models.ForeignKey(Worker, on_delete=models.SET_NULL, null=True, related_name='shifts')
