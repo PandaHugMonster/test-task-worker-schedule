@@ -3,7 +3,7 @@ version: "3.5"
 services:
   app:
     build: .
-    entrypoint: ["python", "manage.py", "runserver", "0.0.0.0:8005"]
+    entrypoint: ["bash", "/app/shell/start.sh"]
     volumes:
       - ./app:/app
     ports:
